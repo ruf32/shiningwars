@@ -1,0 +1,58 @@
+.tablero {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+   
+    height: 100%;
+    width:100%;
+
+   
+  }
+  
+  .fila {
+    height: 52px;
+    width: 1020px;
+    display: flex;
+    
+  }
+  
+  .celda {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #999999;
+    display: block;
+    justify-content:flex-start;
+    align-items:flex-start;
+    font-size: 24px;
+    cursor: pointer;
+  
+  }
+  .imagen-celda{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    z-index: -1;
+    
+  }
+.imagen-personaje {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  z-index: 1;
+  opacity: 0.7;
+  
+}
+.Subcards{
+    height: 450px;
+    width: 275px;
+    background: rgba(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3);
+   text-align: center;
+    justify-content: center;
+    justify-items: center;
+    display:flexbox;
+}

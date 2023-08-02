@@ -1,0 +1,22 @@
+<div style="height: auto;background-color: grey;">
+<div style="display: flexbox;justify-content: center;align-items: center;text-justify: auto;background-color: gray;">
+<h2>     Solicitud de guerra para  {{sol}}    </h2>
+<p>seleciona mapa</p>
+<img src="../../../assets/mapariver1.bmp" alt="river1" style=" 
+width: 50px;
+height: 50px;
+object-fit: cover;
+z-index: -1;">
+
+</div>
+<div style="display: flexbox;justify-content: center;align-items: center;text-justify: auto;background-color: gray;">
+<p>Puntos de batalla</p>
+<input type="number" placeholder="puntosBatt"[(ngModel)]="points" min="300" max="1000">
+<p>Tiempo de batalla</p>
+<input type="number" placeholder="Horas" [(ngModel)]="hour" min="0" max="3"><input type="number" placeholder="Minutos"[(ngModel)]="min" min="0" max="59">
+
+</div>
+<button  (click)="cerrar()">Enviar solicitud</button>
+<button (click)="cerrar()">Cerrar</button>
+
+</div>

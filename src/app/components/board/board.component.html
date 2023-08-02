@@ -1,0 +1,38 @@
+
+    
+<div class="headed">
+    <h1>Generador de tableros</h1>
+</div>
+<div style="align-items: center;justify-content: center;display: flex;">
+    
+<div class="tablero">
+    <div class="fila" *ngFor="let fila of tablero; let i = index" >
+      <div class="celda"*ngFor="let celda of fila; let j = index" (click)="marcarcelda(i,j)">
+        <img [src]=getImagenPath(celda.back) [alt]="'Imagen ' + celda.id" class="imagen-celda">
+    </div>
+      </div>
+    </div>
+    <div class="Subcards" *ngIf="tablero!=[]">
+        <div >
+            <h1 class="titulo">Celda {{posx}},{{posy}}</h1>
+            <img [src]="getImagenPath(tablerosel.back)" alt="IOmagens" class="imagen-celda">
+        </div >
+        <div class="celda" *ngFor="let cell of backs1 | keyvalue" >
+            <button style="margin-left: 65px;margin-top: 0;position: absolute;" *ngIf="cell.key!=tablerosel.back" (click)="llamarcell(cell.key)"> {{cell.key}}</button>
+            <img [src]="cell.value" alt="cell.key" class="imagen-celda" >
+            
+          
+        </div>
+        <div>
+            <div style="background-color: aquamarine;">
+                <label for="carpetaInput">Carpeta:</label>
+                <input type="text" id="carpetaInput" [(ngModel)]="carpeta" name="carpeta">
+              </div>
+              
+              <!-- Otros elementos del formulario, si los hay -->
+              
+              <button (click)="guardartab()">Guardar</button>
+              <button (click)="cargartab()">Cargar</button>
+        </div>
+    </div>
+  </div>

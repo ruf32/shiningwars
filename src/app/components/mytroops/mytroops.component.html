@@ -1,0 +1,124 @@
+<body>
+<div *ngIf="solicitud " class="popup"><app-popupsolicitudes></app-popupsolicitudes> <button (click)="cerrarpop()">cerrar</button></div>
+  <div class="headed" style="display: flex;align-items: center;justify-content: center;">
+ <button (click)="gobat()" style="height: 50px;width: auto;">Battlenet</button>
+ <div style="display: flex;">
+  <input type="text" name="carga" [(ngModel)]="boar">
+  <button style="height: 50px;width: auto" (click)="goboard()">Cargar tab</button>
+  <button style="height: 50px;width: auto" (click)="abrirpop()">Solicitudes</button>
+ </div>
+  </div>
+    <div class="Cards" *ngIf="!solicitud">
+
+        <!-- SOBRES -->
+        <div class="Subcards">
+            <div><h1 class="titulo">Sobres</h1></div> 
+            <div class="columnobj">
+            <div class="obj" *ngFor="let item of sobres" (mouseenter)="onMouseEnterLeave(item, true)"
+            (mouseleave)="onMouseEnterLeave(item, false)" >
+            <img [src]="geticon(item.tipo)" alt="item.id" class="imagen-personaje">
+            <span
+            class="tooltip"
+            *ngIf="showTooltipForItem(item)"
+           
+           
+          >{{item.tipo}}</span>
+        <button class="buttont">Abrir</button>
+            </div>
+        </div>
+        </div>
+  <!-- TROPAS -->
+        <div class="Subcards">
+        <h1 class="titulo">tropas</h1>
+        <div class="columnobj">
+            <div class="obj" *ngFor="let item of tropas;let x=index" (click)="gettroop(item)"(mouseenter)="onMouseEnterLeave(item, true)"
+            (mouseleave)="onMouseEnterLeave(item, false)">
+            <img [src]="geticon(item.Nombre)" [alt]="x" class="imagen-personaje">
+            <span
+            class="tooltip"
+            *ngIf="showTooltipForItem(item)"
+           
+           
+          >{{item.Nombre}}</span>
+            </div></div>
+        </div>
+  <!--EQUIPO -->
+        <div class="Subcards">
+        <h1 class="titulo">items</h1>
+        <div class="columnobj">
+            <div class="obj" *ngFor="let item of items" >
+            <img [src]="geticon(item.nombre)" alt="item.id" class="imagen-personaje"(mouseenter)="onMouseEnterLeave(item, true)"
+            (mouseleave)="onMouseEnterLeave(item, false)">
+            <span
+            class="tooltip"
+            *ngIf="showTooltipForItem(item)"
+           
+           
+          >{{item.nombre}}</span>
+            <button class="buttont" *ngIf="item.tipo=='Arma' && armaselect==false && troopSelected">Equipar</button>
+            <button class="buttont" *ngIf="item.tipo!='Arma' && armaselect==false && troopSelected">Añadir</button>
+            </div></div>
+        </div>  
+  <!-- SILLS-->
+        <div class="Subcards">
+        <h1 class="titulo">skills</h1>
+        <div class="columnobj">
+            <div class="obj" *ngFor="let item of skills" (mouseenter)="onMouseEnterLeave(item, true)"
+            (mouseleave)="onMouseEnterLeave(item, false)">
+            <img [src]="geticon(item.nombre)" [alt]="item.tipo" class="imagen-personaje">
+            <span
+            class="tooltip"
+            *ngIf="showTooltipForItem(item)"
+           
+           
+          >{{item.nombre}}</span>
+            </div></div>
+        </div>
+  <!-- TROPAS ACTIVAS -->
+        <div class="Subcards" >
+        <h1 class="titulo">Activas {{this.BP}} Puntos</h1>
+        <div class="columnobj">
+            <div class="obj" *ngFor="let item of activas;let x=index" (click)="gettroop(item)" (mouseenter)="onMouseEnterLeave(item, true)"
+            (mouseleave)="onMouseEnterLeave(item, false)">
+            <img [src]="geticon(item.Nombre)" [alt]="item.Nombre + x " class="imagen-personaje">
+            <span
+            class="tooltip"
+            *ngIf="showTooltipForItem(item)"
+           
+           
+          >{{item.Nombre}}</span>
+            </div></div>
+        </div>
+      <!-- STATS TROPA SELECCIONADA -->
+        <div class="Subcards"*ngIf="troopboo">
+        <h1 class="titulo">{{this.troopSelected!.Nombre}}</h1>
+            <div >
+            <p>BattlePoints {{this.troopSelected!.BattlePoints}}</p>
+            <p> FUE {{this.troopSelected!.FUE}}</p>
+            <p>DEF {{this.troopSelected!.DEF}}</p>
+            <p>VEL {{this.troopSelected!.VEL}}</p>
+            <p>MOV {{this.troopSelected!.MOV}}</p>
+            <p>PV{{this.troopSelected!.PV}}</p>
+            <p>PM:{{this.troopSelected!.PM}}</p>
+            </div>
+        <button class="buttont" (click)="cambiarestado(troopSelected!.id,active)" >{{this.active? 'quitar':'añadir'}}</button>
+        </div>
+      <!-- INVENTARIO TROPASELECCINADA -->
+        <div class="Subcards"*ngIf="troopboo">
+        <h1 class="titulo">Inventario {{this.troopSelected!.Nombre}}</h1>
+        <div class="columnobj"></div>
+        </div>
+
+      <!-- SKILLS TROPASELECIONADA -->
+        <div class="Subcards"*ngIf="troopboo">
+        <h1 class="titulo">Skills {{this.troopSelected!.Nombre}}</h1>
+        <div class="columnobj">
+            <div class="=obj" *ngFor="let item of SKILLSELCTED">
+                {{item}}
+            </div>
+        </div>
+        </div>
+    </div>
+    <button (click)="logOut()">logOut</button>  
+</body>
+

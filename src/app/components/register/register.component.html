@@ -1,0 +1,30 @@
+
+<html>
+    <body>
+        <button (click)="Audiochangue()" style="width: max-content;height: 40px;">Mute/Sound On</button>
+        <div style="justify-content: center;align-content: center;display: flex;">
+            <p></p>
+           <h1 style="display: contents;">Shining Force Wars</h1> 
+        </div>
+<div class="wrapper">
+<form [formGroup]="formreg" (ngSubmit)="submit()">
+   <div>
+    <p>Email</p>
+    <input type="text" class="form-control" formControlName="email">
+</div>
+<div>
+    <p>password</p>
+    <input type="password" class="form-control" formControlName="pass">
+</div>
+<div><button type="submit">enviar</button></div>
+    
+</form>
+
+</div>
+<div style="display: flex;justify-content: center;justify-items: center;">
+
+    
+    <a href="/login">Si ya estas registrado accede aqui</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<body>
+    <div class="headed" style="display: flex;align-items: center;justify-content: center;">
+        <button  (click)="gotrop()"style="height: 50px;width: auto;">Mis Tropas</button>
+         </div>  
+
+<div style="display: flex;align-items: center;justify-content: center;">
+    <table class="tablebat" >
+        <tr>
+            <th scope="col">  email  </th>
+            <th scope="col">  Helo  </th>
+            <th scope="col" >  games  </th>
+            <th scope="col">  Won  </th>
+            <th scope="col">  Lose  </th>
+            <th scope="col">  Activo  </th>
+          </tr>
+        <tr *ngFor="let item of Users" >
+        <td>{{item.email}}</td>
+        <td>{{item.Helo}}</td>
+        <td>{{item.Gamesplayed}}</td>
+        <td>{{item.gamesWon}}</td>
+        <td>{{item.gameslose}}</td>
+        <td [ngStyle]="{color:item.Estado? 'green':'red'}">{{item.Estado}}</td>
+        
+        <td><button class="buttontable" *ngIf="item.Estado && item.email!=email" (click)="gowar(item.email)">jugar</button></td></tr>
+    </table>
+</div>
+</body>

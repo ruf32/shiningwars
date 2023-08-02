@@ -1,0 +1,86 @@
+.Subcards{
+    height: 450px;
+    width: 275px;
+    background: rgba(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3);
+   text-align: center;
+    justify-content: center;
+    justify-items: center;
+    display:flexbox;
+}
+.Cards{
+    display: grid;
+    grid-template-columns: repeat(4, 275px);
+    grid-gap: 30px;
+    margin: 50px;
+    padding: auto;
+}
+.obj{
+   height: 60px;
+   width: 60px;
+   border-radius: 50%;
+  border: 2px solid;
+  border-color: black;
+   justify-content: center;
+   vertical-align: middle;
+   justify-items:center ;
+   margin-top: 2px;
+   text-align: center;
+   z-index: 1;
+   position: relative;
+   display: flex;
+   font-size: small;
+   color: #240a6b;
+}
+.imagen-personaje {
+    position: absolute;
+    width: 60px;
+    height:60px;
+    object-fit: cover;
+  z-index: -1;
+  opacity: 0.7;
+  object-position: center;
+  margin: 0;
+  border-radius: 50%;
+  
+}
+.titulo{
+    height: auto;
+    width: auto;
+    border: 2px solid black;
+    bottom: top;
+}
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 24px;
+    z-index:3;
+    width: auto;
+  }
+ 
+  .obj:hover .tooltip {
+    display: block;
+    /* Ajusta la posición y el estilo según tus necesidades */
+    top: 20px;
+    left: 20px;
+  }
+  .columnobj{
+    display: grid;
+    grid-template-columns: repeat(4,65px);
+  }
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }

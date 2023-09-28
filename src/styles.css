@@ -1,0 +1,208 @@
+/* You can add global styles to this file, and also import other style files */
+.wrapper{
+    display: flexbox;
+    justify-content: center;
+ 
+    align-items:center; 
+   height: 260px;
+    width: 200px;
+    background: rgba(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3);
+    margin: auto;
+   
+}
+input{
+    margin-bottom: 1px;
+}
+.buttont{
+    height: 20px;
+    width: 60px;
+    background-color: blue;
+    color:aliceblue;
+   bottom: 0;
+   position: absolute;
+    border-radius: 15%;
+}
+html{
+    box-sizing: border-box;
+    height: 100vh;
+}
+body{
+    margin: 0;
+    padding: 0;
+    justify-items: center;
+    align-items: center;
+    justify-content: center; 
+    background-image: url('./assets/cover.jpeg');
+    box-sizing: border-box;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+  
+}
+.buttontable{
+  
+    height: 18px;
+    background-color: green;
+   
+    
+}
+.tablebat{
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  font-size: 20px;
+  background-color: aqua;
+}
+.inactive{
+    color: red;
+}
+.active{
+    color:green
+}
+.headed{
+    width: auto;
+    display: grid;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.Subcards{
+    height: 450px;
+    width: 275px;
+    background: rgba(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3);
+   text-align: center;
+    justify-content: center;
+    justify-items: center;
+    display:flexbox;
+  
+}
+.Cards{
+    display: grid;
+    grid-template-columns: repeat(4, 275px);
+    grid-gap: 30px;
+    margin: 50px;
+    padding: auto;
+}
+.jug1{
+  align-content: initial;
+}
+.jug2{
+  align-content: end;
+}
+.obj{
+   height: 60px;
+   width: 60px;
+   border-radius: 50%;
+  border: 2px solid;
+  border-color: black;
+   justify-content: center;
+   vertical-align: middle;
+   justify-items:center ;
+   margin-top: 2px;
+   text-align: center;
+   z-index: 1;
+   position: relative;
+   display: flex;
+   font-size: small;
+   color: #240a6b;
+}
+.imagen-personaje {
+    position: absolute;
+    width: 60px;
+    height:60px;
+    object-fit: contain;
+  z-index: -1;
+ 
+  object-position: center;
+  margin: 0;
+  border-radius: 50%;
+  
+}
+.titulo{
+    height: auto;
+    width: auto;
+    border: 2px solid black;
+    bottom: top;
+}
+.tooltip {
+    display: inline-block;
+    position: absolute ;
+    background-color: rgba(0, 0, 0);
+    color: #fff;
+    text-justify:auto;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index:3;
+    max-width: 200px;
+    inline-size: 100px;
+    min-width: 60px;
+   max-height:26px ;
+  }
+  .obj:hover .tooltip {
+    display: inline-block;
+    
+   
+    z-index: 3;
+  }
+  .columnobj{
+    display: grid;
+    grid-template-columns: repeat(4,65px);
+  }
+  .headed{
+    width: auto;
+    display: flex;
+    align-items: center;justify-content: center;
+  }
+  .buttonc{
+    width: 95px;
+    height: 60px;
+    background-color: aqua;
+    margin-top: 40px;
+  }
+  .tablero {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+   
+    height: 650px;
+    width:650px;
+    border: 3px solid gold;
+overflow: scroll;
+   
+  }
+  
+  .fila {
+    height: 52px;
+    width: 1020px;
+    display: flex;
+    
+  }
+  
+  .celda {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #999999;
+    display: block;
+    justify-content:flex-start;
+    align-items:flex-start;
+    font-size: 24px;
+    cursor: pointer;
+  
+  }
+  .imagen-celda{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    z-index: -1;
+    
+  }
+ 

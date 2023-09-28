@@ -1,0 +1,9 @@
+
+<h1 class="titulo">skills</h1>
+<div class="columnobj">
+    <div class="obj" *ngFor="let item of skills" (mouseenter)="onMouseEnterLeave(item, true)"
+    (mouseleave)="onMouseEnterLeave(item, false)">
+        <img [src]="geticon(item.nombre)"  [alt]="item.tipo" class="imagen-personaje"/>
+        <span class="tooltip" *ngIf="showTooltipForItem(item)" >{{currentItemTooltip.nombre}}</span>
+    </div>
+    </div>

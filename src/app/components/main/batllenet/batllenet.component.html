@@ -1,0 +1,31 @@
+
+
+
+<div style="display: flex;align-items: center;justify-content: center;margin-top: 130PX;">
+   <table class="tablebat" >
+       <tr>
+           <th scope="col">  email  </th>
+           <th scope="col">  Helo  </th>
+           <th scope="col" >  games  </th>
+           <th scope="col">  Won  </th>
+           <th scope="col">  Lose  </th>
+           <th scope="col">  Activo  </th>
+         </tr>
+       <tr *ngFor="let item of users" >
+       <td>{{item.email}}</td>
+       <td>{{item.Helo}}</td>
+       <td>{{item.Gamesplayed}}</td>
+       <td>{{item.gamesWon}}</td>
+       <td>{{item.gameslose}}</td>
+       <td [ngStyle]="{color:item.Estado? 'green':'red'}">{{item.Estado}}</td>
+       <td><button class="buttontable" *ngIf="!haschat(item.email)&& item.email!=useractivo.email" (click)="createchat(item.email)">chat</button></td>
+       <td><button class="buttontable" *ngIf="item.Estado " >jugar</button></td>
+      </tr>
+       </table>
+</div>
+<h1 style="display: flex;justify-content: center;text-justify: auto;align-items: center;">CHATS ABIERTOS</h1>
+<div *ngIf="useractivo" class="headed" style="height: 40px;">
+   
+   <div *ngFor="let item of useractivo!.chatsp;let x=index">
+      <button (click)="setchat(x)">{{item}} </button>
+   </div></div>

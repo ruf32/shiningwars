@@ -1,0 +1,9 @@
+
+<h1 class="titulo">Activas {{getpointbattles()}} Puntos</h1>
+<div class="columnobj">
+    <div class="obj" *ngFor="let item of tropasactivas;let x=index" (click)="emision(item)"  (mouseenter)="onMouseEnterLeave(item, true)"
+    (mouseleave)="onMouseEnterLeave(item, false)">
+    <img [src]="geticon(item.Nombre)" [alt]="item.Nombre + x " class="imagen-personaje">
+    <span class="tooltip" *ngIf="showTooltipForItem(item)" >{{item.Nombre}}</span>
+    </div>
+</div>

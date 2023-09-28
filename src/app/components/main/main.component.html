@@ -1,0 +1,34 @@
+<div class="headed">
+    <button class="buttonc" (click)="gochat()">Battlenet</button>
+    <button class="buttonc">CHATBOX</button>
+    <button class="buttonc" *ngIf="changuesolicitado">Partidas</button>
+</div>
+<div class="Cards" >
+
+    <!-- SOBRES -->
+    <div class="Subcards">
+        <app-sobres></app-sobres>
+    </div>
+    <div class="Subcards">
+        <app-tropas (tropaselect)="troopSel($event)"></app-tropas>
+    </div>
+    <div class="Subcards">
+        <app-equipo [tropa]="troopselected"></app-equipo>
+    </div>
+    <div class="Subcards">
+        <app-skills></app-skills>
+    </div>
+    <div class="Subcards" >
+        <app-activas (tropaselect)="troopSel($event)" [tropasactivas]="activas"></app-activas>
+    </div>
+    <div class="Subcards" *ngIf="troopselected">
+        <app-trsinfo [tropa]="troopselected"></app-trsinfo>
+    </div>
+    <div class="Subcards" *ngIf="troopselected">
+        <app-trsinv [tropa]="troopselected"></app-trsinv>
+    </div>
+    <div class="Subcards" style="overflow: scroll">
+        <app-solicitudes></app-solicitudes>
+    </div>
+
+</div>

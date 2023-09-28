@@ -1,0 +1,21 @@
+{"titulo":"Que es shining wars",
+"lines":[
+    "Shining wars es un juego de tablero multijugador por turnos basado en el juego de SEGA",
+    "Shining Force .Este se basaba en la formacion de un equipo de personajes de distintas",
+    "Razas fantasticas (elfos,humanos,enanos,centauros,hombres pajaro), donde el jugador podia",
+    "administrar el equipo para superar las batallas estrategicas que nos proponia.",
+    "",
+    "Basandonos en su esencia desarrollamos este juego ,para que el jugador reciba personajes,",
+    "equipo y habilidades para formar su escuadron y enfrentarse 1vs1 contra otros jugadores.",
+    "",
+    "Este juego ha sido desarrollado en Angular con Firebase y contiene las siguientes funcionalidades",
+    "1 Apertura de sobres para recibir personajes,hablidades y equipo",
+    "2 Preparacion de escuadron (tropas activas)",
+    "3 Equipar-desequipar objetos en cada personaje (Incompleto) ",
+    "4 Chat con otros jugadores",
+    "5 Solicitudes para entrada en campos de batalla (Incompleto)",
+    "6 Combates interactivos por turnos (Sin Implementar)",
+    "7 Guardado y carga de dichos Combates(Sin Implementar)"
+
+]
+}

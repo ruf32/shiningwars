@@ -1,0 +1,5 @@
+<h1 class="titulo">Sobres</h1>
+<div class="obj" *ngFor="let item of sobres">
+    <img [src]="geticon(item.tipo)" alt="item.id" class="imagen-personaje">
+    <button (click)="opensobre(item)" class="buttontable">Abrir</button>
+</div>

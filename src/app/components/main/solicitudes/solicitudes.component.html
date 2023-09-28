@@ -1,0 +1,10 @@
+<h1 class="titulo">Solcicitudes</h1>
+<div *ngFor="let item of solicitudes" style="display: flex; justify-content: center;align-items: center; border: 2px solid gold;background-color: palegoldenrod;;">
+    <div *ngIf="item.Solicitado==email">
+     <p style="margin: 4px;">   {{item.Solicitante}}</p>
+    <p style="margin: 4px;">     {{item.puntosBatalla}}</p>
+ <p style="margin: 4px;">    {{item.tiempo}}</p>
+ <p *ngIf="!item.Status">Player OFFline</p>
+ <button *ngIf="item.Status" (click)="opensolictud(item)">Aceptar </button>
+ </div>
+ </div>

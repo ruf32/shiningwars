@@ -1,0 +1,14 @@
+<h1 class="titulo">items</h1>
+<div class="columnobj">
+    <div *ngFor="let item of items" (mouseenter)="onMouseEnterLeave(item, true)"
+    (mouseleave)="onMouseEnterLeave(item, false)">
+    <div class ="obj">
+    <img [src]="geticon(item.nombre)" alt="item.id" class="imagen-personaje" (mouseenter)="onMouseEnterLeave(item, true)"
+    (mouseleave)="onMouseEnterLeave(item, false)">
+    <button class="buttont" (click)="equipar(item)" *ngIf="tropa && ifarma() && item.tipo=='Arma'">EQUIPAR</button>
+    <button class="buttont" (click)="equipar(item)" *ngIf="tropa && ifarmadura() && item.tipo=='Armadura'">EQUIPAR</button>
+    <button class="buttont" (click)="equipar(item)"*ngIf="tropa && ifinventario()&& item.tipo=='Item'">AÑADIR</button>
+    <span class="tooltip" *ngIf="showTooltipForItem(item)" >{{currentItemTooltip.nombre}}</span>
+    </div>
+</div>
+</div>

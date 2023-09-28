@@ -1,0 +1,28 @@
+<html>
+    <body>
+        
+        <div class="wrapper">
+            <div>
+            <h1 class="titulo">{{log? 'Login':'Register'}}</h1>
+        </div>
+           <form [formGroup]="formreg" >
+           <div>
+            <p>Email</p>
+            <input type="text" class="form-control" formControlName="email">
+           </div>
+           <div>
+            <p>password</p>
+            <input type="password" class="form-control" formControlName="pass">
+           </div>
+           <div><button (click)="sub()">enviar</button></div>
+           </form>
+           <div *ngIf="chats">
+           <div *ngFor="let item of chats" >
+            <p >{{item!.msg}}</p>
+           </div></div>
+        </div>
+        <div style="display: flex;justify-content: center;justify-items: center;">
+        <button style="width: auto;" (click)="changueLR()">{{log? 'Si no estas registrado accede ya':'Si ya estas registrado accede aqui'}}</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+<div class="tablero" *ngIf="tablero&&tablero!=[]">
+    <div class="fila" *ngFor="let fila of tablero!; let i = index" >
+      <div class="celda"*ngFor="let celda of fila.cell; let j = index" (click)="marcarcelda(i,j)">
+
+        <img [src]=getIcon(celda.back) [alt]="'Imagen ' + celda.id" class="imagen-celda">
+    </div>
+      </div>
+    </div>

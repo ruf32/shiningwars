@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./chatbox.component.css']
 })
 export class ChatboxComponent implements OnInit {
-  
+email=localStorage.getItem('email') as string  
 chats:any
 jug:string[]=[]
 jugador:number=1;

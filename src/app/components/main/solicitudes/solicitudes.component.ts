@@ -23,9 +23,7 @@ export class SolicitudesComponent implements OnInit{
   ngOnInit(): void {
     this.sto.getsolicitudes().subscribe(data=>{
       this.solicitudes=data
-      this.solicitudes.forEach(element=>{
-        this.sto.getstatusplayer(element.Solicitante).then(dta=>element.STATU=dta)
-      })
+      
     }) 
   
 }

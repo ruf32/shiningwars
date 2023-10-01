@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { tropaIN } from 'src/app/interfaces/tropaIN';
 import { front } from 'src/app/services/get-icon.service';
-import { StoreService, solicitud, tropas } from 'src/app/services/store.service';
+import { StoreService, solicitud } from 'src/app/services/store.service';
 import * as uuid from 'uuid';
 @Component({
   selector: 'app-popup2',
@@ -10,7 +11,7 @@ import * as uuid from 'uuid';
 })
 export class Popup2Component {
   public solicitud:solicitud[]
-  public activas:tropas[]
+  public activas:tropaIN[]
   public BP:number
   public time=60
   constructor(

@@ -1,55 +1,22 @@
-import {tropas} from '../services/store.service'
-export class tropagame{
-    PVMax:number
-    PVact:number
-    PMMax:number
-    PMact:number
-    coord?:{x:number,y:number}
+import {tropaIN} from '../interfaces/tropaIN';
+export class tropagame {
     Arma:Arma
     Armadura:Armadura
-    player:number
-    ATK:number
-    DEF:number[]
-    constructor(private tropa:tropas,private playerE:number){
-this.PVMax=this.tropa.PV
-this.PVact=this.tropa.PV
-this.PMMax=this.tropa.PM
-this.PMact=this.tropa.PM
-this.Arma= new Arma(this.tropa.ARMA as keyof typeof NArma)
-this.Armadura=new Armadura(this.tropa.ARMADURA as keyof typeof NArmadura)
-this.player=this.playerE
-this.ATK=this.tropa.FUE+this.Arma.ATK
-this.DEF=[
-    this.tropa.DEF+this.Armadura.DEFis,
-    this.Armadura.DEFue,
-    this.Armadura.DEFri,
-    this.Armadura.DEVen,
-    this.Armadura.DERay,
-]
+    constructor(public tropa:tropaIN,private playerE:string){
+this.tropa.player=this.playerE
+this.Arma=new Arma(this.tropa.Arma as keyof typeof NArma)
+this.Armadura=new Armadura(this.tropa.Armadura as keyof typeof NArmadura)
     }
     setCoord(x:number,y:number){
-        this.coord={x:x,y:y}
+        this.tropa.coord={x:x,y:y}
         return this.DataExport()
     }
     DataExport(){
-        return {
-            ID:this.tropa.id,
-            player:this.player,
-            Nombre:this.tropa.Nombre,
-            PVMax:this.PVMax,
-            PVact:this.PVact,
-            PMMax:this.PMMax,
-            PMact:this.PMact,
-            Arma:this.tropa.ARMA,
-            Armadura:this.tropa.ARMADURA,
-            SKILL1:this.tropa.SKILL1,
-            ITEM1:this.tropa.ITEM1,
-            MOV:this.tropa.MOV,
-            coord:[this.coord?.x,this.coord?.y]
+        return this.tropa
 
             
         }
-    }
+    
     getID(){
         return this.tropa.id
     }
@@ -73,10 +40,10 @@ export class Arma{
     ataqueFIS(pj:tropagame,enemy:tropagame){
         const tiradaD=Math.random()
         let daño:number
-        if(tiradaD>(1-pj.Arma.CritCh)) daño=(pj.ATK+pj.Arma.DAÑ)*pj.Arma.CritX-(enemy.DEF[0])
-        else daño=(pj.ATK+pj.Arma.DAÑ)-(enemy.DEF[0])
+        if(tiradaD>(1-pj.Arma.CritCh)) daño=(pj.tropa.ATK+pj.Arma.DAÑ)*pj.Arma.CritX-(enemy.tropa.DEF[0])
+        else daño=(pj.tropa.ATK+pj.Arma.DAÑ)-(enemy.tropa.DEF[0])
         if (daño<1) daño=10
-        return enemy.PVact-=daño
+        return enemy.tropa.PV!-=daño
         
     }
     

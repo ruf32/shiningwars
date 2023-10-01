@@ -22,12 +22,16 @@ export class BatllenetComponent implements OnInit {
     if (this.useractivo!.chats.length>0)return this.useractivo.chatsp.some((element)=>element==mail)
     else return false
   }
+  chattrue(){
+    return localStorage.getItem('chatID')? true:false
+   }
   createchat(email:string){
     
-    const claveformat ='CHA'+this.sto.clave()
+    const claveformat =this.sto.clave()
     const refer=ref(this.db,'/CHATS/'+claveformat)
-    set(refer,{data:{jug1:localStorage.getItem('email') as string,jug2:email},msgs:{0:{jug:1,msg:'hola'}}}).then(res=>console.log(res))
-    this.sto.setchat(localStorage.getItem('email') as string,email,claveformat).then(res=>console.log(res))
+    set(refer,{data:{jug1:localStorage.getItem('email') as string,jug2:email},msgs:{0:{jug:1,msg:'hola'}}}).then(res=>console.log('fase database'))
+
+    this.sto.setchat(localStorage.getItem('email') as string,email,claveformat).then(res=>console.log('fase firebase'))
   }
   ngOnInit(): void {
     this.sto.getUsers().subscribe(data=>{this.users=data; 
@@ -37,7 +41,7 @@ export class BatllenetComponent implements OnInit {
      if (!this.useractivo.chats){
       this.useractivo.chats=[]
       this.useractivo.chatsp=[]
-      this.useractivo.chatj=[]
+      this.useractivo.chatsj=[]
      }
     
     }
@@ -51,13 +55,13 @@ export class BatllenetComponent implements OnInit {
 setchat(index:number){
 
 localStorage.setItem('chatID',this.useractivo.chats[index])
-if (this.useractivo.chatj[index]=='jug1' ){
+if (this.useractivo.chatsj[index]=='jug1' ){
 localStorage.setItem('jug1',localStorage.getItem('email') as string)
 localStorage.setItem('jug2',this.useractivo.chatsp[index])}
 else{
   localStorage.setItem('jug2',localStorage.getItem('email') as string)
   localStorage.setItem('jug1',this.useractivo.chatsp[index])}
-this.rout.navigate(['chat'])
+
 }
 setalling(jug:number){
   if (jug==1) return "right"

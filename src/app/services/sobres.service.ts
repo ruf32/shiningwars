@@ -8,76 +8,76 @@ export class SobresService {
 
   constructor() { }
  private sobrestropas=[
-    [//tropas
-    {Nombre:'Guerrero',BP:30,ATK:6,DEF:[2],VEL:3,MOV:3,PVMAX:200,PMMAX:20,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
-    {Nombre:'Paladin',BP:30,ATK:4,DEF:[5],VEL:2,MOV:3,PVMAX:250,PMMAX:20,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
-    {Nombre:'Arquero',BP:40,ATK:3,DEF:[1],VEL:5,MOV:4,PVMAX:150,PMMAX:40,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
-    {Nombre:'picaro',BP:40,ATK:3,DEF:[1],VEL:6,MOV:4,PVMAX:125,PMMAX:40,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
-    {Nombre:'caballero',BP:50,ATK:6,DEF:[4],VEL:3,MOV:6,PVMAX:250,PMMAX:10,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
-    {Nombre:'heal',BP:50,ATK:2,DEF:[0],VEL:3,MOV:3,PVMAX:125,PMMAX:60,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
-    {Nombre:'Sorcerer',BP:50,ATK:2,DEF:[0],VEL:3,MOV:3,PVMAX:125,PMMAX:60,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]}],
-    //fin tropas
+   [//tropas
+   {Nombre:'Guerrero',clase:'Guerrero', BP:30,ATK:6,DEF:[2],VEL:3,MOV:3,PVMAX:200,PMMAX:20,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
+   {Nombre:'Paladin',clase:'Paladin',BP:30,ATK:4,DEF:[5],VEL:2,MOV:3,PVMAX:250,PMMAX:20,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
+   {Nombre:'Arquero',clase:'Arquero',BP:40,ATK:3,DEF:[1],VEL:5,MOV:4,PVMAX:150,PMMAX:40,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
+   {Nombre:'picaro',clase:'picaro',BP:40,ATK:3,DEF:[1],VEL:6,MOV:4,PVMAX:125,PMMAX:40,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
+   {Nombre:'caballero',clase:'caballero',BP:50,ATK:6,DEF:[4],VEL:3,MOV:6,PVMAX:250,PMMAX:10,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
+   {Nombre:'heal',clase:'heal',BP:50,ATK:2,DEF:[0],VEL:3,MOV:3,PVMAX:125,PMMAX:60,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
+   {Nombre:'Sorcerer',clase:'Sorcerer',BP:50,ATK:2,DEF:[0],VEL:3,MOV:3,PVMAX:125,PMMAX:60,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]}],
+   //fin tropas
 [//inventario
-    [//armas
-    {tipo:'Arma',nombre:'palo',ATK:1,},
-    {tipo:'Arma',nombre:'espada',ATK:3,},
-    {tipo:'Arma',nombre:'lanza',ATK:2,},
-    {tipo:'Arma',nombre:'arco',ATK:2,},
-    {tipo:'Arma',nombre:'daga',ATK:2,},
-    {tipo:'Arma',nombre:'ballesta',ATK:4,},
-    {tipo:'Arma',nombre:'vara',PMMAX:20},
-    {tipo:'Arma',nombre:'LanzaC',ATK:4}]
-    //fin armas
-  ,[//Armaduras
-    {tipo:'Armadura',nombre:'cuero',DEF:[1],MOV:1,VEL:2},
-    {tipo:'Armadura',nombre:'ligera',DEF:[2],MOV:0,VEL:1},
-    {tipo:'Armadura',nombre:'media',DEF:[3], MOV:0,VEL:0},
-    {tipo:'Armadura',nombre:'pesada',DEF:[4],MOV:-1,VEL:-1},
-    {tipo:'Armadura',nombre:'completa',DEF:[6],MOV:-1,VEL:-3},
-    ]//fin Armaduras
-  ,[//pociones
-    {tipo:'Item',nombre:'Pocion PVMAX pequeña',PVMAX:30},
-    {tipo:'Item',nombre:'Pocion mp pequeña',PMMAX:30},
-    ]//fin pociones
-    ,[//items
-    {tipo:'Item',nombre:'UPDEF',DEF:[3]},
-    {tipo:'Item',nombre:'U,ATK',ATK:3},
-    {tipo:'Item',nombre:'UPVMAXEL',VEL:3},
-    {tipo:'Item',nombre:'UPMMAXOV',MOV:3},
-    ]// fin items
+   [//armas
+   {tipo:'Arma',nombre:'palo',ATK:1,},
+   {tipo:'Arma',nombre:'espada',ATK:3,},
+   {tipo:'Arma',nombre:'lanza',ATK:2,},
+   {tipo:'Arma',nombre:'arco',ATK:2,},
+   {tipo:'Arma',nombre:'daga',ATK:2,},
+   {tipo:'Arma',nombre:'ballesta',ATK:4,},
+   {tipo:'Arma',nombre:'vara',PMMAX:20},
+   {tipo:'Arma',nombre:'LanzaC',ATK:4}]
+   //fin armas
+ ,[//Armaduras
+   {tipo:'Armadura',nombre:'cuero'},
+   {tipo:'Armadura',nombre:'ligera'},
+   {tipo:'Armadura',nombre:'media'},
+   {tipo:'Armadura',nombre:'pesada'},
+   {tipo:'Armadura',nombre:'completa'},
+   ]//fin Armaduras
+ ,[//pociones
+   {tipo:'Item',nombre:'Pocion PV pequeña'},
+   {tipo:'Item',nombre:'Pocion mp pequeña',},
+   ]//fin pociones
+   ,[//items
+   {tipo:'Item',nombre:'UPDEF',},
+   {tipo:'Item',nombre:'UPATK'},
+   {tipo:'Item',nombre:'UPVMAXEL'},
+   {tipo:'Item',nombre:'UPMMAXOV'},
+   ]// fin items
 ]//fin inevntario
 ,[//skils
 [//cuerpo
-{tipo:'Cuerpo',nombre:'Carga',ATK:2,MOV:2,REUSE:5},
-{tipo:'Cuerpo',nombre:'Daño',ATK:6,REUSE:5},
-{tipo:'Cuerpo',nombre:'rompedef',DEF:[-2]},
-{tipo:'Cuerpo',nombre:'taunt',REUSE:5}
+{tipo:'Cuerpo',nombre:'Carga'},
+{tipo:'Cuerpo',nombre:'Daño'},
+{tipo:'Cuerpo',nombre:'rompedef'},
+{tipo:'Cuerpo',nombre:'taunt'}
 ]//fin cc
 ,[//dist
-{tipo:'distancia',nombre:'alcance',REUSE:5},
-{tipo:'distancia',nombre:'Daño',ATK:4,REUSE:5},
-{tipo:'distancia',nombre:'critico',REUSE:5},
-{tipo:'distancia',nombre:'untaunt',REUSE:5}
+{tipo:'distancia',nombre:'alcance',},
+{tipo:'distancia',nombre:'Daño',},
+{tipo:'distancia',nombre:'critico',},
+{tipo:'distancia',nombre:'untaunt',}
 ]//din dist
 ,[//sorcer
-{tipo:'sorcer',nombre:'fuego',ATK:2,MOV:2,REUSE:5},
-{tipo:'sorcer',nombre:'rayo',ATK:6,REUSE:5},
-{tipo:'sorcer',nombre:'hielo',DEF:[-2]},
-{tipo:'sorcer',nombre:'confusion',ATK:2,MOV:2,REUSE:5},
-{tipo:'sorcer',nombre:'mute',ATK:2,MOV:2,REUSE:5}
+{tipo:'sorcer',nombre:'fuego',},
+{tipo:'sorcer',nombre:'rayo',},
+{tipo:'sorcer',nombre:'hielo',},
+{tipo:'sorcer',nombre:'confusion',},
+{tipo:'sorcer',nombre:'mute',}
 ]//fin socer
 ,[//heal
-{tipo:'heal',nombre:'Cura',ATK:2,MOV:2,REUSE:5},
-{tipo:'heal',nombre:'escudo',ATK:6,REUSE:5},
-{tipo:'heal',nombre:'Movimiento',DEF:[-2]},
-{tipo:'heal',nombre:'velocidad',ATK:2,MOV:2,REUSE:5},
-{tipo:'heal',nombre:'quitardebuff',ATK:2,MOV:2,REUSE:5}
+{tipo:'heal',nombre:'Cura',},
+{tipo:'heal',nombre:'escudo',},
+{tipo:'heal',nombre:'Movimiento'},
+{tipo:'heal',nombre:'velocidad'},
+{tipo:'heal',nombre:'quitardebuff'}
 ]//fin heal
 ,[//picaro
-{tipo:'picaro',nombre:'untaunt',ATK:2,MOV:2,REUSE:5},
-{tipo:'picaro',nombre:'ocultarse',ATK:6,REUSE:5},
-{tipo:'picaro',nombre:'critico',DEF:[-2]},
-{tipo:'picaro',nombre:'sangrante',ATK:2,MOV:2,REUSE:5},
+{tipo:'picaro',nombre:'untaunt',},
+{tipo:'picaro',nombre:'ocultarse'},
+{tipo:'picaro',nombre:'critico',},
+{tipo:'picaro',nombre:'sangrante'}
 ]//fin picaro
 ]//fin skills
 ]//fin

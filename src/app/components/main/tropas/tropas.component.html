@@ -2,7 +2,7 @@
         <div class="columnobj">
             <div class="obj" *ngFor="let item of tropas;let x=index" (click)="emision(item)" (mouseenter)="onMouseEnterLeave(item, true)"
             (mouseleave)="onMouseEnterLeave(item, false)">
-            <img [src]="geticon(item.Nombre)" [alt]="x" class="imagen-personaje">
+            <img [src]="geticon(item.clase)" [alt]="x" class="imagen-personaje">
             <span class="tooltip" *ngIf="showTooltipForItem(item)" >{{item.Nombre}}</span>
             </div>
         </div>

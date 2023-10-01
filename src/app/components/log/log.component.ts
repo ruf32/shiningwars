@@ -38,6 +38,7 @@ register(){
   this.ath.register(this.forr).then(async response=>{
     if(response.user.email) {
       await this.sto.createinit(response.user.email);
+      this.log=true
     }
 
     })
@@ -47,7 +48,7 @@ async login(){
   this.forr.email=this.formreg.value.email ;
   this.forr.pass=this.formreg.value.pass;
   await this.ath.login(this.forr).then((response)=>{
-    localStorage.setItem('email',this.forr.email)
+   
     this.sto.getdocID(this.forr.email)
     this.rout.navigate(['/main'])
     })
@@ -57,12 +58,10 @@ async login(){
  
 }
 changueLR(){
-  if (this.log) this.log=false
-  else this.log=true;
+ this.log=this.log? false:true
 }
 sub(){
-  if(this.log) this.login().then(res=>console.log(res))
-  else this.register()
+ this.log? this.login():this.register()
 } 
 }
 

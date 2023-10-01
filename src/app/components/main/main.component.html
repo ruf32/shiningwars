@@ -30,5 +30,8 @@
     <div class="Subcards" style="overflow: scroll">
         <app-solicitudes></app-solicitudes>
     </div>
+    <div class="Subcards" style="overflow: scroll" *ngIf="chattrue()">
+        <app-chatbox></app-chatbox>
+    </div>
 
 </div>

@@ -4,24 +4,25 @@
 <div class="columnobj" style="justify-content: center;">
   <div class="obj">
  
-    <img [src]="geticon(tropa!.ARMA)" class="imagen-personaje"/>
-    <button class="buttont" *ngIf="tropa!.ARMA!='noArma'">Quitar</button>
-</div>  <p>{{tropa!.ARMA}}</p></div>
+    <img [src]="geticon(tropa!.Arma)" class="imagen-personaje"/>
+    <button class="buttont" *ngIf="tropa!.Arma!='noArma'" (click)="desequipar(tropa!.Arma,'Arma')">Quitar</button>
+</div>  <p>{{tropa!.Arma}}</p></div>
 <div class="columnobj"style="justify-content: center;">
 <div class="obj"> 
-  <img [src]="geticon(tropa!.ARMADURA)" class="imagen-personaje"/>
-  <button class="buttont" *ngIf="tropa!.ARMADURA!='noArmadura'">Quitar</button>
-</div><p>{{tropa!.ARMADURA}}</p></div>
+  <img [src]="geticon(tropa!.Armadura)" class="imagen-personaje"/>
+  <button class="buttont" *ngIf="tropa!.Armadura!='noArmadura'" (click)="desequipar(tropa!.Armadura,'Armadura')">Quitar</button>
+</div><p>{{tropa!.Armadura}}</p></div>
 <p class="titulo">Inventario</p>
 <div class="columnobj" >
-  <div class="obj"*ngFor="let item of tropa!.ITEM1;let x=index">
-  <img [src]="geticon(tropa!.ITEM1[x])" class="imagen-personaje"/>
+  <div class="obj"*ngFor="let item of tropa!.Item;let x=index">
+  <img [src]="geticon(tropa!.Item[x])" class="imagen-personaje"/>
+  <button class="buttont" (click)="desequipar(item,'Item')">Quitar</button>
 </div>
 </div>
 <p class="titulo"> Skills</p>
 <div class="columnobj" >
-  <div class="obj"*ngFor="let item of tropa!.SKILL1;let x=index">
-  <img [src]="geticon(tropa!.SKILL1[x])" class="imagen-personaje"/>
+  <div class="obj"*ngFor="let item of tropa!.Skill;let x=index">
+  <img [src]="geticon(tropa!.Skill[x])" class="imagen-personaje"/>
 
 </div>
 </div>

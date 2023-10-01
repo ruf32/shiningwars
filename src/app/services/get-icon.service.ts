@@ -24,12 +24,13 @@ export enum front{
 'Initial'='./assets/sobres/sobre1.png',
 
   //tropas
-  'Peasant'='./assets/PJ/granjero.png' ,
+  'Peasant'='',
+  'Heroe'='./assets/PJ/Heroe1.png' ,
  'Guerrero'='./assets/PJ/hacha1.png' ,
  'Arquero'='./assets/PJ/ballesta1.png' ,
  'Paladin'='./assets/PJ/caballero1.png' ,
  'picaro'='./assets/PJ/espada1.png' ,
- 'caballero'='./assets/PJ/caballo1.png' ,
+ 'caballero'='../../assets/PJ/caballo1.png' ,
  'heal'='./assets/PJ/heal1.png' ,
  'Sorcerer'='./assets/PJ/sorcer1.png' ,
  //tropasgame

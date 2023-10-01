@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { tropas } from 'src/app/services/store.service';
+import { tropaIN } from 'src/app/interfaces/tropaIN';
+import { StoreService } from 'src/app/services/store.service';
+
 
 @Component({
   selector: 'app-trsinfo',
@@ -7,5 +9,12 @@ import { tropas } from 'src/app/services/store.service';
   styleUrls: ['./trsinfo.component.css']
 })
 export class TRSInfoComponent {
-@Input () tropa!:tropas
+@Input () tropa!:tropaIN
+constructor(private sto:StoreService){
+
+}
+changueactiva(){
+this.sto.changuetroopact(this.tropa.id,this.tropa.activa!)
+this.tropa.activa= this.tropa.activa? false:true
+}
 }

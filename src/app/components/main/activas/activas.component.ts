@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { tropaIN } from 'src/app/interfaces/tropaIN';
 import { front } from 'src/app/services/get-icon.service';
-import { StoreService, tropas } from 'src/app/services/store.service';
+import { StoreService,  } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-activas',
@@ -8,11 +9,11 @@ import { StoreService, tropas } from 'src/app/services/store.service';
   styleUrls: ['./activas.component.css']
 })
 export class ActivasComponent implements OnInit{
-  activas:tropas[]=[]
+  activas:tropaIN[]=[]
   currentItemTooltip:any
   BP=0;
-   @Output() tropaselect =new EventEmitter<tropas>
-  @Input() tropasactivas!:tropas[]
+   @Output() tropaselect =new EventEmitter<tropaIN>
+  @Input() tropasactivas!:tropaIN[]
   
   constructor(private sto:StoreService){
 
@@ -22,14 +23,14 @@ export class ActivasComponent implements OnInit{
   console.log(this.tropasactivas!)
     
   }
-  emision(tropa:tropas){
+  emision(tropa:tropaIN){
     this.tropaselect.emit(tropa)
   }
   getpointbattles():number{
     var sum=0;
     if (this.tropasactivas.length>0){for(let x of this.tropasactivas){
      
-    sum+=x.BattlePoints;
+    sum+=x.BP;
     }}
   
     return sum;

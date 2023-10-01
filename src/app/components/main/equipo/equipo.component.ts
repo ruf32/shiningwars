@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { tropaIN } from 'src/app/interfaces/tropaIN';
 import { GetIconService, front } from 'src/app/services/get-icon.service';
-import { StoreService, items, tropas } from 'src/app/services/store.service';
+import { StoreService, items,  } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-equipo',
@@ -8,7 +9,7 @@ import { StoreService, items, tropas } from 'src/app/services/store.service';
   styleUrls: ['./equipo.component.css']
 })
 export class EquipoComponent implements OnInit{
-  @Input() tropa!:tropas|null
+  @Input() tropa!:tropaIN|null
 items:items[]=[]
 currentItemTooltip:any;
 constructor(private sto:StoreService,private ic:GetIconService){
@@ -31,15 +32,15 @@ showTooltipForItem(item: any): boolean {
   }
   //funciones booleanas para botones
   ifarma(){
-if (this.tropa!.ARMA!='noArma') return false
+if (this.tropa!.Arma!='noArma') return false
 else return true
   }
   ifarmadura(){
-    if (this.tropa!.ARMADURA!='noArmadura') return false
+    if (this.tropa!.Armadura!='noArmadura') return false
     else return true
   }
   ifinventario(){
-    if (this.tropa!.ITEM1.length<4) return true
+    if (this.tropa!.Item.length<4) return true
     else return false
   }
   equipar(item:items){
@@ -61,11 +62,11 @@ else return true
   equipartropa(item:items){
     switch(item.tipo){
       case 'Arma':
-        this.tropa!.ARMA=item.nombre;break;
+        this.tropa!.Arma=item.nombre;break;
       case 'Armadura':
-        this.tropa!.ARMADURA=item.nombre;break;
+        this.tropa!.Armadura=item.nombre;break;
       case 'Item':
-        this.tropa!.ITEM1.push(item.nombre)
+        this.tropa!.Item.push(item.nombre)
     }
   }
 }

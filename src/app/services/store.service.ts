@@ -5,6 +5,7 @@ import { SobresService } from './sobres.service';
 import { back, casilla} from '../objetos/Board';
 import * as uuid from 'uuid';
 import { cell, fila } from '../interfaces/cell';
+import { tropaIN } from '../interfaces/tropaIN';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,10 +17,10 @@ export class StoreService {
   async createinit(email:string){
 
     let docref=collection(this.sto,email);
-     const doc= await addDoc(docref,{Gamesplayed:0,gamesWon:0,gamesLose:0,chats:[],chatsp:[],chatsj:[]});
+     const doc= await addDoc(docref,{Gamesplayed:0,gamesWon:0,gamesLose:0});
     const init=[
       {ID:0,tipo:'Initial'},
-      {Nombre:'Peasant',BattlePoints:10,ATK:0,DEF:[0],VEL:0,MOV:1,PV:100,PM:0,ARMA:'noArma',ARMADURA:'noArmadura',Item:[],Skill:[]},
+      {Nombre:'Heroe',clase:'Heroe', BP:40,ATK:4,DEF:[2],VEL:3,MOV:3,PV:300,PM:60,Arma:'noArma',Armadura:'noArmadura',Item:[],Skill:[]},
       {tipo:'Arma',nombre:'palo',equipada:'0'},
       {tipo:'Item',nombre:'Pocion PV pequeña',equipada:'0'},
       {tipo:'Cuerpo',nombre:'Carga',equipada:'0'}
@@ -35,7 +36,7 @@ export class StoreService {
     addDoc(docref,init[3])
     docref=collection(this.sto,email+'/'+doc.id,'Habilidades')
     addDoc(docref,init[4])
-    addDoc(collection(this.sto,'Users'),{Gamesplayed:0,gamesWon:0,gameslose:0,Helo:0,email:email,Estado:false})
+    addDoc(collection(this.sto,'Users'),{Gamesplayed:0,gamesWon:0,gameslose:0,Helo:0,email:email,Estado:false,chats:[],chatsp:[],chatsj:[]})
     }
  // funcion de recuperacion de documento de usuario
 async getdocID(email:string){
@@ -57,9 +58,9 @@ getSobres():Observable<sobres[]>{
   return collectionData(subCollectionRef,{idField:'id'}) as Observable<sobres[]>
   }
 //funcion dashboard para todas las tropas
-getropas():Observable<tropas[]>{
+getropas():Observable<tropaIN[]>{
   const subCollectionRef = collection(this.sto,localStorage.getItem('email')as string,localStorage.getItem('doc')as string, 'tropas');
-  return collectionData(subCollectionRef,{idField:'id'}) as Observable<tropas[]>
+  return collectionData(subCollectionRef,{idField:'id'}) as Observable<tropaIN[]>
   }
 //funcion dashboard para inventario
 getitems():Observable<items[]>{
@@ -77,20 +78,12 @@ getSkills():Observable<skill[]>{
    
   }
 //funcion dashboard para tropas activas
-async getactivetroops(){
-  const activas:tropas[]=[]
-  try {
+ getactivetroops(){
+  
     const q = query(collection(this.sto,localStorage.getItem('email')as string,localStorage.getItem('doc')as string,'tropas'), where('activa', '==', true));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-        const tropa = doc.data();
-        activas.push(tropa as tropas);
-      });
-    return activas;
-    } catch (error) {
-      console.error('Error al buscar tropas activas:', error);
-      return [];
-    }
+   
+    return collectionData(q,{idField:'id'}) as Observable<tropaIN[]>
+  
   }
   //funcion cambio de tropas a activas/inactivas
 async changuetroopact(troop:string,activa:boolean){
@@ -135,29 +128,77 @@ async setdocByID(IDItem:DocumentReference,IDtropa:DocumentReference,nombre:strin
     case 'Arma':
 if (accion=='equipar'){
 await updateDoc(IDItem,{equipada:IDtropa.id})
-await updateDoc(IDtropa,{ARMA:nombre})
+await updateDoc(IDtropa,{Arma:nombre})
   }else {
-    await updateDoc(IDItem,{equipada:0})
-    await updateDoc(IDtropa,{ARMA:'noArma'})
+    await updateDoc(IDItem,{equipada:'0'})
+    await updateDoc(IDtropa,{Arma:'noArma'})
 }
 break;
 case 'Armadura':
   
   if (accion=='equipar'){
     await updateDoc(IDItem,{equipada:IDtropa.id})
-    await updateDoc(IDtropa,{ARMADURA:nombre})
+    await updateDoc(IDtropa,{Armadura:nombre})
       }else {
-        await updateDoc(IDItem,{equipada:0})
-        await updateDoc(IDtropa,{ARMADURA:'noArma'})
+        await updateDoc(IDItem,{equipada:'0'})
+        await updateDoc(IDtropa,{Armadura:'noArma'})
     } 
     break;
     case 'Item':
       if (accion=='equipar'){
+        let itemlist:string[]=[]
+      itemlist= (await getDoc(IDtropa)).get('Item')
+       
+        itemlist.push(nombre)
+        console.log(itemlist)
+        await updateDoc(IDtropa,{Item:itemlist!})
+        await updateDoc(IDItem,{equipada:IDtropa.id})}
+else{
+  let itemlist:string[]=[]
+  itemlist= (await getDoc(IDtropa)).get('Item')
+ let valueremove:string|undefined=nombre
+  const itemlist2=itemlist.filter(value=>{if(value==valueremove){
+    valueremove=undefined
+    return false
+  }else return true})
+  console.log(itemlist2)
+  await updateDoc(IDtropa,{Item:itemlist2})
+  await updateDoc(IDItem,{equipada:'0'})
+}
+break;
+default:
+  if (accion=='equipar'){
+    let itemlist:string[]=[]
+    itemlist= (await getDoc(IDtropa)).get('Skill')
+    itemlist.push(nombre)
+    await updateDoc(IDtropa,{Skill:itemlist})
+    await updateDoc(IDItem,{equipada:IDtropa.id})}
+else{
+let itemlist:string[]=[]
+let valueremove:string|undefined=nombre
 
+itemlist= (await getDoc(IDtropa)).get('Skill')
+const itemlist2=itemlist.filter(value=>{if(value==valueremove){
+  valueremove=undefined
+  return false
+}else return true})
+await updateDoc(IDtropa,{Skill:itemlist2})
+await updateDoc(IDItem,{equipada:'0'})
+}
+break;
      
 }
+
 }
+async getequipID(IDtropa:string,nombre:string){
+  const q=query(collection(this.sto,localStorage.getItem('email') as string,localStorage.getItem('doc') as string,'equipo'),where('equipada','==',IDtropa),where('nombre','==',nombre))
+const snap = await getDocs(q)
+if(snap.docs[0]) return snap.docs[0].id
+else return undefined
+
+
 }
+
 getchanguesol(){
  
   const quer=query(collection(this.sto,'solicitudes'),where('Solicitado','==',localStorage.getItem('email') ),where('estado','==','Aceptado'))
@@ -177,13 +218,13 @@ return fila
 }
 adddocwar(ID:string,data:any){
 const doc1=doc(this.sto,'Combates',ID)
-const tropas2:tropas[]=[]
+const tropas2:tropaIN[]=[]
 const date=new Date()
 setDoc(doc1,{jugador1:data.jugador1,jugador2:data.jugador2,mapa:data.mapa})
 
 
 }
-addtroops(tropas:tropas[],jugador:string,id:string){
+addtroops(tropas:tropaIN[],jugador:string,id:string){
   var carpeta=''
   if (jugador=='jugador1')carpeta='tropas1'
   else carpeta='tropas2'
@@ -201,8 +242,10 @@ await updateDoc(docid,{Status})
   //preparar doc
   const quer=query(collection(this.sto,'Users'),where('email','==',email1))
   const quer1=query(collection(this.sto,'Users'),where('email','==',email2))
+  console.log('fase1')
   const snap1= await getDocs(quer)
   const snap2= await getDocs(quer1)
+  console.log('fase2')
 //preprarar datos por undefined(no chats)
 let datain1
 let datain2
@@ -210,39 +253,47 @@ if (!snap1.docs[0].get('chatsp')){
 datain1={
   chats:[],
   chatsp:[],
-  chatj:[]
+  chatsj:[]
 }
 }else datain1={
   chats:snap1.docs[0].get('chats') as string[],
   chatsp:snap1.docs[0].get('chatsp') as string[],
-  chatj:snap1.docs[0].get('chatj') as string[]
+  chatsj:snap1.docs[0].get('chatsj') as string[]
 }
+console.log('fase3')
 if (!snap2.docs[0].get('chatsp')){
   datain2={
     chats:[],
     chatsp:[],
-    chatj:[]
+    chatsj:[]
   }
   }else datain2={
   chats:snap2.docs[0].get('chats') as string[],
   chatsp:snap2.docs[0].get('chatsp') as string[],
-  chatj:snap2.docs[0].get('chatj') as string[]
+  chatsj:snap2.docs[0].get('chatsj') as string[]
 }
+console.log('fase4')
+console.log(datain1)
+console.log(datain2)
 //modificar datos
 //PLAYER1
-datain1.chatj.push('jug1')
+datain1.chatsj.push('jug1')
 datain1.chats.push(Idchat)
 datain1.chatsp.push(email2)
 //PLAYER2
-datain2.chatj.push('jug2')
+datain2.chatsj.push('jug2')
 datain2.chats.push(Idchat)
 datain2.chatsp.push(email1)
+console.log(datain1)
+console.log(datain2)
+console.log('fase5')
 //preprarar referencias al doc
 const ref1=doc(this.sto,'Users',snap1.docs[0].id)
 const ref2=doc(this.sto,'Users',snap2.docs[0].id)
 //updates
-await updateDoc(ref1,{chatj:datain1.chatj,chats:datain1.chats,chatsp:datain1.chatsp})
-await updateDoc(ref2,{chatj:datain2.chatj,chats:datain2.chats,chatsp:datain2.chatsp})
+await updateDoc(ref1,{chatsj:datain1.chatsj,chats:datain1.chats,chatsp:datain1.chatsp})
+await updateDoc(ref2,{chatsj:datain2.chatsj,chats:datain2.chats,chatsp:datain2.chatsp})
+console.log('fase6')
 }
 async getfilas(id:number,carpeta:string){
   const col=collection(this.sto,'boards','TABLEROBASE',carpeta)
@@ -281,7 +332,7 @@ enviartropa(tropa:any,player:string,IDcombat:string){
   addDoc(collection(this.sto,'Combats',IDcombat,player),tropa)
 }
 getropaswar(player:string,ID:string){
-  return collectionData(collection(this.sto,'combats',ID,player)) as Observable<tropas[]>
+  return collectionData(collection(this.sto,'combats',ID,player)) as Observable<tropaIN[]>
 }
 changemap(carpeta:string,fila:fila){
   const col=collection(this.sto,'battle',carpeta)
@@ -299,23 +350,7 @@ export interface sobres{
   tipo:string
   id?:string
 }
-export interface tropas{
-  Nombre:string,
-  BattlePoints:number,
-  FUE:number,
-  DEF:number,
-  VEL:number,
-  MOV:number,
-  PV:number,
-  PM:number,
-  activa:boolean,
-  ARMA:string,
-  ARMADURA:string,
-  ITEM1:string[],
-  SKILL1:string[],
-  id:string,
-  funci?:Function[]
-}
+
 export interface Status{
   Estado:string
   Acept1?:boolean
@@ -324,26 +359,15 @@ export interface Status{
 export interface items{
   tipo:string,
   nombre:string,
-  FUE?:number,
-  DEF?:number,
-  VEL?:number,
-  MOV?:number,
-  PV?:number,
-  PM?:number,
-  SKILL1?:string|null,
+ 
   equipada:string,
   id?:string
 }
 export interface skill{
   tipo:string,
   nombre:string,
-  FUE?:number,
-  DEF?:number,
-  VEL?:number,
-  MOV?:number,
-  PV?:number,
-  PM?:number,
-  equipada:string
+ id?:string,
+  equipada?:string
 }
 export interface Users{
 Estado:boolean
@@ -355,7 +379,7 @@ Gamesplayed:number
 gamesWon:number
 gameslose:number
 chats:string[]
-chatj:string[]
+chatsj:string[]
 chatsp:string[]
 }
 export interface sobres{

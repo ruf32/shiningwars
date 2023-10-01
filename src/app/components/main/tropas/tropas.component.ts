@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { tropaIN } from 'src/app/interfaces/tropaIN';
+
 import { front } from 'src/app/services/get-icon.service';
-import { StoreService, tropas } from 'src/app/services/store.service';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-tropas',
@@ -8,7 +10,7 @@ import { StoreService, tropas } from 'src/app/services/store.service';
   styleUrls: ['./tropas.component.css']
 })
 export class TropasComponent implements OnInit{
-  tropas:tropas[]=[]
+  tropas:tropaIN[]=[]
   currentItemTooltip:any;
   constructor(private sto:StoreService){
 
@@ -16,9 +18,9 @@ export class TropasComponent implements OnInit{
   ngOnInit(): void {
     this.sto.getropas().subscribe(data=>this.tropas=data)
   }
-  @Output() tropaselect =new EventEmitter<tropas>
+  @Output() tropaselect =new EventEmitter<tropaIN>
  
-  emision(tropa:tropas){
+  emision(tropa:tropaIN){
     this.tropaselect.emit(tropa)
   }
   //funcion iconos

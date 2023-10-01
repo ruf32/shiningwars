@@ -29,3 +29,5 @@
    <div *ngFor="let item of useractivo!.chatsp;let x=index">
       <button (click)="setchat(x)">{{item}} </button>
    </div></div>
+   <div *ngIf="chattrue()">
+   <app-chatbox></app-chatbox></div>

@@ -51,6 +51,7 @@ async login(){
    
     this.sto.getdocID(this.forr.email)
     this.rout.navigate(['/main'])
+    this.sto.setStatus(true).then(()=>console.log('User actualizado'))
     })
   .catch((error)=>{
     console.log(error)

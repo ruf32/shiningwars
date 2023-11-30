@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseApp, firebaseApp$ } from '@angular/fire/app';
 import { Database, equalTo, onValue, query, ref ,orderByChild, set} from '@angular/fire/database';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StoreService, Users } from 'src/app/services/store.service';
+import { PopupComponent } from '../popup/popup.component';
+import { Poup3Component } from '../poup3/poup3.component';
 
 @Component({
   selector: 'app-batllenet',
@@ -15,7 +18,7 @@ export class BatllenetComponent implements OnInit {
   batle:Users[]=[]
   
   useractivo!:Users
-  constructor(private db:Database,private sto:StoreService,private rout:Router){
+  constructor(private db:Database,private sto:StoreService,private rout:Router,private mat:MatDialog){
 
   }
   haschat(mail:string){
@@ -51,7 +54,17 @@ export class BatllenetComponent implements OnInit {
 };
 
 
-
+popupopen(email:string){
+const dialogref=this.mat.open(Poup3Component,{
+  width: '400px',
+  height: 'auto',
+  disableClose: true,
+   data:{email:email}
+})
+ dialogref.afterClosed().subscribe(result => {
+  console.log('El popup se cerró.');
+});
+}
 setchat(index:number){
 
 localStorage.setItem('chatID',this.useractivo.chats[index])
@@ -69,5 +82,8 @@ setalling(jug:number){
 }
 finduser(user:Users){
   return user.email==localStorage.getItem('email')
+}
+goback(){
+  this.rout.navigate(['/main'])
 }
 }

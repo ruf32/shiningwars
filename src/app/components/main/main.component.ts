@@ -66,33 +66,8 @@ Openpopup(){
 
   dialogRef.afterClosed().subscribe((result: string) => {
     console.log('El popup se cerró.'+result);
-    if (result=='fin de cuenta atras'){this.PopOpen=true
-      
-      this.solicAcept.forEach(element=>this.sto.changuesol(this.sto.getsolbyID(element.id as string ),{Estado:'Pendiente',Acept1:false,Acept2:false}))
-    }else{
-      //copiar tablero base
-let tabBase:fila[]=[]
-this.sto.gettabbase(localStorage.getItem('map') as string).subscribe(data=>{tabBase=data;tabBase=tabBase.sort((a,b)=>{return a.id-b.id});tabBase.forEach(element=>{
-element.cell.forEach(ele=>ele.player='0')
-})})
-//crear idlucha
-const ID=this.sto.clave()
-//crear tablero 
-tabBase.forEach((element,index)=>{
-  this.sto.creartab(ID,element.cell,index)
+   
 })
-//tranformar tropas
-
-
-const tropasdata:tropagame[]=[]
-this.activas.forEach(element=>{
-tropasdata.push(new tropagame(element,"2"))
-})
-tropasdata.forEach(element=>{
-  this.sto.enviartropa(element.DataExport,localStorage.getItem('email')as string,ID)
-})
-    }
-  });
 }
 gochat(){
   this.rout.navigate(['/battle'])

@@ -1,14 +1,15 @@
+import { tropaIN } from "../interfaces/tropaIN"
 
 
 export class tropa {
    Arma:Arma
    Armadura:Armadura
-constructor(public tropaI:tropaIN,private playerE:string){
+constructor(public tropaI:tropaIN){
     this.Arma=new Arma(this.tropaI.Arma as keyof typeof NArma)
     this.Armadura=new Armadura(this.tropaI.Armadura as keyof typeof NArmadura)
-    if (!this.tropaI.PV) this.tropaI.PV=this.tropaI.PVMAX
-    if (!this.tropaI.PM) this.tropaI.PM=this.tropaI.PMMAX
-    this.tropaI.player=this.playerE
+    if (!this.tropaI.PVMAX) this.tropaI.PVMAX=this.tropaI.PV!
+    if (!this.tropaI.PMMAX) this.tropaI.PMMAX=this.tropaI.PM!
+  
 }
 setcoord(c:coord){
     this.tropaI.coord=c
@@ -103,28 +104,7 @@ export const armas=[
     {ATK:5,DAÑ:10,Alcance:1,CritCh:0.3,CritX:3.5},
     {ATK:4,DAÑ:18,Alcance:1,CritCh:0.35,CritX:2.3},
 ]
-export interface tropaIN{
-    id:string,          //ID-DOC
-    Nombre:string,      //Nombre personalizado
-    clase:string,       //tipo de tropa
-    PVMAX:number,       //puntos de vida maximo
-    PV?:number,         //(Combate) puntos de vida actuales
-    PMMAX:number,       //puntos de magia maximo
-    PM?:number,         //(Combate) puntos de magia actuales
-    Arma:keyof typeof NArma,        //Arma equipada(NoArma si no lleva)
-    Armadura:keyof typeof NArmadura,    //Armadura equipada(NoArmadura si no lleva)
-    Item:string[],      //objetos equipados([] si no lleva)
-    Skill:string[],     //habilidades equipadas([] si no lleva)
-    ATK:number,         //ATK base de personaje sin arma
-    DEF:number[],       //DEF base de personaje[0 fisica]
-    VEL:number,         //velocidad de actuacion(turnos)
-    MOV:number,         //casillas de movimiento
-    BP:number,          //puntos de Batalla totales
-    activa?:boolean,     //activa tropa 
-    coord?:coord        //(combate)coordenadas
-    Buff?:buf[]         //(combate)
-    player?:string      
-}
+
 export type coord={
 x:number,
 y:number

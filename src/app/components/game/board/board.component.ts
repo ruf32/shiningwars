@@ -17,13 +17,13 @@ export class BoardComponent implements OnInit{
   alltropas:tropagame[]=[]
   carpeta:string=localStorage.getItem('map') as string
 constructor(private sto:StoreService){
-this.sto.gettabbase('river1').subscribe(data=>{
+this.sto.gettabwar(localStorage.getItem('docwar')as string).subscribe(data=>{
   //recepcion de tablero
   this.tablero=data;
   //ordenar tablero
   this.tablero=this.tablero.sort((a,b)=>{return a.id-b.id});
 this.tablero.map(element=>element.cell.map(elem=>{elem.id='0';elem.player='0'}))
-  console.log(this.tablero!)})
+  })
 
 
 }

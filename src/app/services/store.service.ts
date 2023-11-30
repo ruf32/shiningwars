@@ -114,7 +114,14 @@ async changuetroopact(troop:string,activa:boolean){
         }
   }
   }
-
+  async setStatus(changue:boolean){
+  const q=query(collection(this.sto,'Users'),where('email','==',localStorage.getItem('email')as string))
+  await getDocs(q).then(value=>{
+    const docr=doc(this.sto,'Users',value.docs[0].id)
+   changue? updateDoc(docr,{Estado:true}) :updateDoc(docr,{Estado:false})
+  })
+  
+}
 
 getdocbyID(ID:string,email:string,docID:string,carpeta:string){
   return doc(this.sto,email,docID,carpeta,ID)
@@ -235,8 +242,39 @@ snapsol2(email:string){
   const querySolicitudes = query(col, where('Solicitante', '==', email), where('Status.Estado', '==', 'Aceptado'));
   return collectionData(querySolicitudes,{idField:'id'}) as Observable<solicitud[]>
 }
-async changuesol(docid:DocumentReference,Status:any){
-await updateDoc(docid,{Status})
+snapsol1(email:string){
+  const col=collection(this.sto,'solicitudes')
+  const querySolicitudes = query(col, where('Solicitante', '==', email), where('Status.Estado', '==', 'WAR'));
+  return collectionData(querySolicitudes,{idField:'id'}) as Observable<solicitud[]>
+}
+snapsol3(email:string){
+  const col=collection(this.sto,'solicitudes')
+  const querySolicitudes = query(col, where('Solicitado', '==', email), where('Status.Estado', '==', 'WAR'));
+  return collectionData(querySolicitudes,{idField:'id'}) as Observable<solicitud[]>
+}
+Initwar1(tropas:tropaIN[],data:{jugador1:string,jugador2:string,mapa:string},Idmap:string,email:string){
+setDoc(doc(this.sto,'Combates',Idmap),{data:data}).then(()=>{console.log('Imbecil');tropas.forEach(element=>{element.player=email;this.addtroopwar(element,Idmap)})}).catch(error=>console.log(error))
+this.gettab(data.mapa).subscribe(data=>{
+
+  data.forEach(async element=>{
+   await addDoc(collection(this.sto,'Combates',Idmap,'board'),element).then(()=>{})
+  })
+  
+})
+}
+Initwar2(tropas:tropaIN[],Idmap:string,email:string){
+
+  tropas.forEach(element=>{element.player=email;this.addtroopwar(element,Idmap)})
+
+}
+addtroopwar(troop:tropaIN,Idmap:string){
+  setDoc(doc(this.sto,'Combates',Idmap,'tropas',troop.id),troop)
+}
+async changuesol(docid:DocumentReference,Status:any,battle?:string){
+await updateDoc(docid,{Status}).then(()=>{
+  if (battle) updateDoc(docid,{battle:battle})
+})
+
 }
  async setchat(email1:string,email2:string,Idchat:string){
   //preparar doc
@@ -315,11 +353,11 @@ const col=collection(this.sto,'Combats',carpeta,'board')
   console.log('tablero creado')
 }
 gettab(carpeta:string){
-  const col=collection(this.sto,'Combats',carpeta,'board');
-  return collectionData(col,{idField:'docid'})
-}
-gettabbase(carpeta:string){
   const col=collection(this.sto,'boards','TABLEROBASE',carpeta);
+  return collectionData(col,{idField:'docid'}) as Observable<fila[]>
+}
+gettabwar(carpeta:string){
+  const col=collection(this.sto,'Combates',carpeta,'board');
   return collectionData(col,{idField:'docid'}) as Observable<fila[]>
 }
 clave(){
@@ -339,6 +377,9 @@ changemap(carpeta:string,fila:fila){
 const docref=doc(col,fila.docid)
 setDoc(docref,fila)
 
+}
+enviasol(sol:solicitud){
+  addDoc(collection(this.sto,'solicitudes'),sol)
 }
 }
 //interfaces
@@ -389,7 +430,7 @@ export interface sobres{
 }
 export interface solicitud{
   Solicitante:string
- STATU:boolean;
+ 
   Solicitado:string
  battle?:string
   mapa:string

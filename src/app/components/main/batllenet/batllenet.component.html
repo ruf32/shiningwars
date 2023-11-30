@@ -1,5 +1,5 @@
 
-
+<button class="button" (click)="goback()">Atras</button>
 
 <div style="display: flex;align-items: center;justify-content: center;margin-top: 130PX;">
    <table class="tablebat" >
@@ -19,7 +19,7 @@
        <td>{{item.gameslose}}</td>
        <td [ngStyle]="{color:item.Estado? 'green':'red'}">{{item.Estado}}</td>
        <td><button class="buttontable" *ngIf="!haschat(item.email)&& item.email!=useractivo.email" (click)="createchat(item.email)">chat</button></td>
-       <td><button class="buttontable" *ngIf="item.Estado " >jugar</button></td>
+       <td><button class="buttontable" *ngIf="item.Estado && item.email!=useractivo.email " (click)="popupopen(item.email)" >jugar</button></td>
       </tr>
        </table>
 </div>

@@ -5,6 +5,7 @@ export interface cell{
     collision?:boolean,
     id:string|number
     player?:string
+    ID?:string
   }
   export interface fila{
     cell:cell[]

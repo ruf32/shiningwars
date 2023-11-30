@@ -22,11 +22,11 @@ export interface tropaIN{
     Buff?:buf[]         //(combate)
     player?:string      
 }
-export type coord={
+export interface coord{
 x:number,
 y:number
 }
-export type buf={
+export interface buf{
     Atributo:string,
     Buff:number,
     restante:number

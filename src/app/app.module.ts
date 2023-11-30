@@ -31,6 +31,8 @@ import { Popup2Component } from './components/popup2/popup2.component';
 import { BatllenetComponent } from './components/main/batllenet/batllenet.component';
 import { ChatboxComponent } from './components/main/batllenet/chatbox/chatbox.component';
 import { HelpComponent } from './components/main/help/help.component';
+import { Poup3Component } from './components/main/poup3/poup3.component';
+import { GameComponent } from './components/game/game.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { HelpComponent } from './components/main/help/help.component';
     Popup2Component,
     BatllenetComponent,
     ChatboxComponent,
-    HelpComponent
+    HelpComponent,
+    Poup3Component,
+    GameComponent
   ],
   imports: [
     BrowserModule,

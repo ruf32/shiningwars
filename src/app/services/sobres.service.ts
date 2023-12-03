@@ -42,8 +42,8 @@ export class SobresService {
    ,[//items
    {tipo:'Item',nombre:'UPDEF',},
    {tipo:'Item',nombre:'UPATK'},
-   {tipo:'Item',nombre:'UPVMAXEL'},
-   {tipo:'Item',nombre:'UPMMAXOV'},
+   {tipo:'Item',nombre:'UPVEL'},
+   {tipo:'Item',nombre:'UPMOV'},
    ]// fin items
 ]//fin inevntario
 ,[//skils
@@ -67,7 +67,7 @@ export class SobresService {
 {tipo:'sorcer',nombre:'mute',}
 ]//fin socer
 ,[//heal
-{tipo:'heal',nombre:'Cura',},
+{tipo:'heal',nombre:'curar',},
 {tipo:'heal',nombre:'escudo',},
 {tipo:'heal',nombre:'Movimiento'},
 {tipo:'heal',nombre:'velocidad'},

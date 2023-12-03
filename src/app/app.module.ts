@@ -33,6 +33,8 @@ import { ChatboxComponent } from './components/main/batllenet/chatbox/chatbox.co
 import { HelpComponent } from './components/main/help/help.component';
 import { Poup3Component } from './components/main/poup3/poup3.component';
 import { GameComponent } from './components/game/game.component';
+import { ChatindexComponent } from './components/main/chatbox/chatindex/chatindex.component';
+import { ChatmsgComponent } from './components/main/chatbox/chatmsg/chatmsg.component';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { GameComponent } from './components/game/game.component';
     ChatboxComponent,
     HelpComponent,
     Poup3Component,
-    GameComponent
+    GameComponent,
+    ChatindexComponent,
+    ChatmsgComponent
   ],
   imports: [
     BrowserModule,

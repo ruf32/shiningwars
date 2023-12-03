@@ -72,6 +72,7 @@ export enum front{
 'UPVEL'='./assets/pociones/pocion3.png',
 'UPFUE'='./assets/pociones/pocion4.png',
 'UPMOV'='./assets/pociones/pocion2.png',
+'UPATK'='./assets/pociones/pocion5.png',
 //SKILLS
 'Carga'='./assets/skills/carga.png',
 'Daño'='./assets/skills/explosion.png',
@@ -82,7 +83,7 @@ export enum front{
 'critico'='./assets/skills/explosion.png',
 'untaunt'='./assets/skills/untaunt.png',
 
-'Fuego'='./assets/skills/dom.png',
+'fuego'='./assets/skills/dom.png',
 'hielo'='./assets/skills/hielo.png',
 'rayo'='./assets/skills/electrico.png',
 'confusion'='./assets/skills/depresion.png',

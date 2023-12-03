@@ -1,0 +1,6 @@
+<input type="text" id="mensaje"[(ngModel)]="mensaje"#jugadorInput (keyup.enter)="setmsg(mensaje)">
+<button (click)="setmsg(mensaje)">Enviar</button>
+<div *ngFor="let msg of chats">
+    <p [ngStyle]="{'text-align': setalling(msg.jug),'color': msg.jug === jug ? 'blue' : 'red'}">{{msg.msg}}</p>
+
+</div>

@@ -22,12 +22,6 @@
        <td><button class="buttontable" *ngIf="item.Estado && item.email!=useractivo.email " (click)="popupopen(item.email)" >jugar</button></td>
       </tr>
        </table>
-</div>
-<h1 style="display: flex;justify-content: center;text-justify: auto;align-items: center;">CHATS ABIERTOS</h1>
-<div *ngIf="useractivo" class="headed" style="height: 40px;">
-   
-   <div *ngFor="let item of useractivo!.chatsp;let x=index">
-      <button (click)="setchat(x)">{{item}} </button>
-   </div></div>
-   <div *ngIf="chattrue()">
+</div><div>
+
    <app-chatbox></app-chatbox></div>

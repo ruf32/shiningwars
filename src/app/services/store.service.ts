@@ -29,6 +29,7 @@ export class StoreService {
     docref=collection(this.sto,email+'/'+doc.id+'/sobres')
     addDoc(docref,init[0])
     addDoc(docref,init[0])
+    addDoc(docref,init[0])
     docref=collection(this.sto,email+'/'+doc.id,'tropas')
     addDoc(docref,init[1])
     docref=collection(this.sto,email+'/'+doc.id,'equipo')
@@ -52,6 +53,17 @@ getUsers():Observable<Users[]>{
     const col=collection(this.sto,'Users')
     return collectionData(col,{idField:'id'}) as Observable<Users[]>
     }
+async getUserbyemail(email:string){
+  const col=collection(this.sto,'Users')
+  const sn=query(col,where('email','==',email))
+  const sn1=await getDocs(sn)
+  const DTO={
+    chatsp:sn1.docs[0].get('chatsp'),
+    chatID:sn1.docs[0].get('chats')
+  }
+  
+  return DTO
+}
 //funcion dashboard para sobres
 getSobres():Observable<sobres[]>{
   const subCollectionRef = collection(this.sto,localStorage.getItem('email')as string,localStorage.getItem('doc')as string, 'sobres');

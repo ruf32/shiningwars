@@ -1,0 +1,7 @@
+<div *ngIf="useractivo">
+<div *ngFor="let chats of useractivo.chatsp;let x=index ">
+     <button (click)="selectchat(useractivo.chatID[x])">{{chats}}</button>
+
+</div>
+
+</div>

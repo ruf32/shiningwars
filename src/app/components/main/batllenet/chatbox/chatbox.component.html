@@ -1,6 +1,6 @@
 
 <div>
-    <app-chatindex (chatselect)="selectchat($event)"></app-chatindex>
+    <app-chatindex (chatselect)="selectchat($event)" style="height:40px ;overflow: scroll;"></app-chatindex>
 </div>
 <div *ngIf="chatselect">
     <app-chatmsg [chatID]="chatselect!"></app-chatmsg>

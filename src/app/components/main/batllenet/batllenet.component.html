@@ -22,6 +22,10 @@
        <td><button class="buttontable" *ngIf="item.Estado && item.email!=useractivo.email " (click)="popupopen(item.email)" >jugar</button></td>
       </tr>
        </table>
-</div><div>
+       <div class="Subcards" style="overflow: scroll">
 
-   <app-chatbox></app-chatbox></div>
+         <app-chatbox></app-chatbox></div>
+         <div  class="Subcards" style="overflow: scroll">
+            <app-solicitudes></app-solicitudes>
+         </div>
+</div>

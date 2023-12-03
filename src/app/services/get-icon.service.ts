@@ -76,7 +76,7 @@ export enum front{
 //SKILLS
 'Carga'='./assets/skills/carga.png',
 'Daño'='./assets/skills/explosion.png',
-'romperdef'='./assets/skills/romper.png',
+'rompedef'='./assets/skills/romper.png',
 'taunt'='./assets/skills/taunt.png',
 
 'alcance'='./assets/skills/mirilla.png',
